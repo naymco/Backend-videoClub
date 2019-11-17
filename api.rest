@@ -1,0 +1,16 @@
+GET http://localhost:3000/user
+
+###
+
+POST http://localhost:3000/user 
+Content-Type: application/json
+{
+   "name": "Alexito",
+   "username": "naymc0",
+   "roles": "usuario",
+   "email": "alexito@alex.com",
+   "password": "1234",
+   "sign_up_date": "",
+   "last_login_date": ""
+}
+###
