@@ -1,7 +1,6 @@
 const User = require('../models/Users');
 const bcrypt = require('bcrypt');
 const CONFIG = require('../config/config')
-
 const token = require('jsonwebtoken');
 
 function login(req, res) {
@@ -17,13 +16,18 @@ function login(req, res) {
                     payload = {
                         username: user.username,
                         email: user.email,
-                        name: user.name
+                        name: user.name,
+                        role: user.role
                     }
+
                     token.sign(payload, CONFIG.SECRET_KEY_TOKEN, function (error, token) {
                         if (error) {
                             res.status(500).send({ error });
                         } else {
-                            res.status(200).send({ message: 'Acceso Concedido', token });
+                            if (payload.role === 'usuario' || payload.role === 'admin') {
+                                return res.status(200).send({ message: `Bienvenido ${payload.name}. Este es tu token: ${token}` });
+                            } else res.status(403).send({ message: 'No eres usuario registrado' })
+                            /* res.status(200).send({ message: 'Acceso Concedido', token }); */
                         }
                     })
 

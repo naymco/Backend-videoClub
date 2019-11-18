@@ -10,27 +10,21 @@ const MovieSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
-        unique: true
     },
     adult: {
         type: Boolean,
         default: false,
-        required: true
-    },
-    genre_ids: {
-        type: String,
-        required: true,
-
     },
     overview: {
-        type: String,
-        required: true
+        type: String
     },
     popularity: {
+        type: Number
+    },
+    genre_ids: {
         type: Number,
-        required: true
+        ref: 'genero'
     }
-
 
 })
 

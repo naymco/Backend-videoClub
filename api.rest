@@ -7,7 +7,7 @@ Content-Type: application/json
 {
    "name": "Alexito",
    "username": "naymc0",
-   "roles": "usuario",
+   "roles": "admin",
    "email": "alexito@alex.com",
    "password": "1234",
    "sign_up_date": "",

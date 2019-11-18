@@ -13,11 +13,11 @@ const UserSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        default: 'invitado',
+        default: 'usuario',
         enum: [
-            'invitado',
-            'usuario',
-            'admin'
+            'invitado', // GET, buscar y filtrar
+            'usuario', // GET, PUT buscar, filtrar y modificar
+            'admin' // GET, PUT, POST, DELETE  // puede hacerlo todo 
         ]
     },
     email: {

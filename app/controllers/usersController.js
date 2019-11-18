@@ -1,72 +1,40 @@
 const User = require('../models/Users');
 
-function index(req, res) { 
+function index(req, res) {
     User.find({})
         .then(users => {
-            if (users.length) return res.status(200).send({
-                users
-            });
-            return res.status(204).send({
-                message: 'NO CONTENT'
-            });
-        }).catch(error => res.status(500).send({
-            error
-        }));
+            if (users.length) return res.status(200).send({ users });
+            return res.status(204).send({ message: 'NO CONTENT' });
+        }).catch(error => res.status(500).send({ error }));
 }
 
 function show(req, res) { // con esta función hace una busqueda de todos los usuarios para luego poder comparar quién existe
-    if (req.body.error) return res.status(500).send({
-        error
-    });
-    if (!req.body.users) return res.status(404).send({
-        message: 'NOT FOUND'
-    });
+    if (req.body.error) return res.status(500).send({ error });
+    if (!req.body.users) return res.status(404).send({ message: 'NOT FOUND' });
     let users = req.body.users;
-    return res.status(200).send({
-        users
-    });
+    return res.status(200).send({ users });
 }
 
 function create(req, res) {
     new User(req.body)
-        
-        .save().then(user => res.status(201).send({
-        user
-    })).catch(error => res.status(500).send({
-        error
-    }));
+        .save().then(user => res.status(201).send({ user }))
+        .catch(error => res.status(500).send({ error }));
 }
 
 function update(req, res) {
-    if (req.body.error) return res.status(500).send({
-        error
-    });
-    if (!req.body.user) return res.status(404).send({
-        message: 'NOT FOUND'
-    });
+    if (req.body.error) return res.status(500).send({ error });
+    if (!req.body.user) return res.status(404).send({ message: 'NOT FOUND' });
     let user = req.body.users[0];
     user = Object.assign(user, req.body);
-    user.save().then(user => res.status(200).send({
-        message: 'UPDATED',
-        user
-    })).catch(error => res.status(500).send({
-        error
-    }));
+    user.save().then(user => res.status(200).send({ message: 'UPDATED', user }))
+        .catch(error => res.status(500).send({ error }));
 }
 
 function remove(req, res) {
-    if (req.body.error) return res.status(500).send({
-        error
-    });
-    if (!req.body.user) return res.status(404).send({
-        message: 'NOT FOUND'
-    });
-    req.body.user[0].remove().then(user => res.status(200).send({
-        message: 'REMOVED',
-        user
-    })).catch(error => res.status(500).send({
-        error
-    }));
+    if (req.body.error) return res.status(500).send({ error });
+    if (!req.body.users) return res.status(404).send({ message: 'NOT FOUND' });
+    req.body.users[0].remove().then(user =>
+        res.status(200).send({ message: 'REMOVED', user })).catch(error => res.status(500).send({ error }));
 }
 
 function find(req, res, next) { // Función de búsqueda que usarán parte de las funciones de arriba. es un middleware
