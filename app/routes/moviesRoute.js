@@ -6,8 +6,9 @@ const router = express.Router();
 
 router.get('/', movieC.index)
     .get('/:key/:value', movieC.find, movieC.show)
-    .get('/:title', movieC.buscarTitulo)
-    .get('/:genre', movieC.buscarGenero)
+    .get('/:title', movieC.find, movieC.buscarTitulo)
+
+
 
 
 

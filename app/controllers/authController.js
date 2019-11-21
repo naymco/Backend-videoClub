@@ -9,7 +9,7 @@ function login(req, res) {
 
     User.findOne({ username })
         .then(user => {
-            if (!user) return res.status(404).send({ message: 'El usuario no existe' });
+            if (!user) return res.status(404).send({ message: 'Usuario o contraseña incorrectos' });
             bcrypt.compare(password, user.password).then(match => {
                 if (match) {
                     //acceso
@@ -22,18 +22,17 @@ function login(req, res) {
 
                     token.sign(payload, CONFIG.SECRET_KEY_TOKEN, function (error, token) {
                         if (error) {
-                            res.status(500).send({ error });
+                            return res.status(500).send({ error });
                         } else {
                             if (payload.role === 'usuario' || payload.role === 'admin') {
-                                return res.status(200).send({ message: `Bienvenido ${payload.name}. Este es tu token: ${token}` });
+                                return res.status(200).send({ message: `Bienvenido ${payload.name}. Este es tu token: ${token}`, payload });
                             } else res.status(403).send({ message: 'No eres usuario registrado' })
-                            /* res.status(200).send({ message: 'Acceso Concedido', token }); */
                         }
                     })
 
                 } else {
                     //no hay acceso
-                    return res.status(200).send({ message: 'Password incorrecto' });
+                    return res.status(200).send({ message: 'Usuario o password incorrecto' });
                 }
 
             }).catch(error => {

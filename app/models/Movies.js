@@ -23,7 +23,7 @@ const MovieSchema = new mongoose.Schema({
     },
     genre_ids: {
         type: Array,
-        ref: 'genero',
+        ref: 'Genero',
         required: true
     }
 

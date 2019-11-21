@@ -36,6 +36,19 @@ const UserSchema = new mongoose.Schema({
     last_login_date: {
         type: Date,
         default: Date.now()
+    },
+    pedido: {
+        type: String,
+        required: true
+    },
+    fecha_pedido: {
+        type: Date,
+        required: true,
+        default: Date.now()
+    },
+    fecha_entrega: {
+        type: Date,
+        required: true
     }
 });
 UserSchema.pre('save', function (next) { // funcion para encriptar el password, esto funciona cada vez que se ejecute el 'save' en los controladores

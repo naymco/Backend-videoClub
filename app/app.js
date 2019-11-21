@@ -5,6 +5,7 @@ const Movies = require('./routes/moviesRoute');
 const User = require('./routes/userRoute');
 const Auth = require('./routes/authRoute');
 const Genres = require('./routes/genreRoute');
+const Pedidos = require('./routes/pedidosRoute');
 
 const authToken = require('./middlewares/authToken');
 
@@ -17,10 +18,12 @@ app.use(bodyParser.urlencoded({ extended: false })); // no vamos a recibir petic
 app.use(authToken);
 
 // Routes 
+
 app.use('/movie', Movies);
 app.use('/genre', Genres);
 app.use('/user', User);
 app.use('/auth', Auth);
+app.use('/pedido', Pedidos);
 
 
 
