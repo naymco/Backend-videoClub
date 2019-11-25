@@ -25,8 +25,6 @@ function find(req, res, next) { // Función de búsqueda que usarán parte de la
     Movies.find(query).then(peliculas => {
         if (!peliculas.length) return next();
         req.body.peliculas = peliculas;
-        let pedido = req.params.value
-        pedido.post().save()
         return next();
     }).catch(error => {
         req.body.error = error;

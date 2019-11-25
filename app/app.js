@@ -5,7 +5,7 @@ const Movies = require('./routes/moviesRoute');
 const User = require('./routes/userRoute');
 const Auth = require('./routes/authRoute');
 const Genres = require('./routes/genreRoute');
-const Pedidos = require('./routes/pedidosRoute');
+const Order = require('./routes/orderRoute');
 
 const authToken = require('./middlewares/authToken');
 
@@ -23,7 +23,8 @@ app.use('/movie', Movies);
 app.use('/genre', Genres);
 app.use('/user', User);
 app.use('/auth', Auth);
-app.use('/pedido', Pedidos);
+app.use('/order', Order);
+
 
 
 

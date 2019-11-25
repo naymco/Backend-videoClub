@@ -5,12 +5,35 @@ GET http://localhost:3000/user
 POST http://localhost:3000/user 
 Content-Type: application/json
 {
+   "id": "",
    "name": "Alexitooo",
    "username": "naymc0o",
    "roles": "usuario",
    "email": "alexitooo@alex.com",
    "password": "1234",
    "sign_up_date": "",
-   "last_login_date": ""
+   "last_login_date": "",
+   "peliculaPedida": "",
+   "fecha_pedido": "",
+   "fecha_entrega": "",
+   "alquiler_peli": ""
+   
 }
 ###
+{
+   "username": "admin",
+   "password": "1234"
+}
+###
+5dd14dad8196be178784c05d
+5dd14dad8196be178784c05d
+
+###
+      5dda9999f123c412ffec67b0
+order/5dd14dad8196be178784c05d
+      5dda9ac51525f113de15c88d
+      5dda9f30a4e0b618680fc36f
+###
+{
+   "title": "Joker"
+}

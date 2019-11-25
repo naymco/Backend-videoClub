@@ -1,7 +1,12 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const ObjectId = require('mongodb').ObjectID;
 
 const UserSchema = new mongoose.Schema({
+    /* id: {
+        type: Number,
+        unique: true
+    } */
     name: {
         type: String,
         required: true
@@ -15,8 +20,8 @@ const UserSchema = new mongoose.Schema({
         type: String,
         default: 'usuario',
         enum: [
-            'invitado', // GET, buscar y filtrar
-            'usuario', // GET, PUT buscar, filtrar y modificar
+            'invitado', // 
+            'usuario', // 
             'admin' // GET, PUT, POST, DELETE  // puede hacerlo todo 
         ]
     },
@@ -37,19 +42,10 @@ const UserSchema = new mongoose.Schema({
         type: Date,
         default: Date.now()
     },
-    pedido: {
-        type: String,
-        required: true
-    },
-    fecha_pedido: {
-        type: Date,
-        required: true,
-        default: Date.now()
-    },
-    fecha_entrega: {
-        type: Date,
-        required: true
-    }
+    alquiler_peli: String,
+    peliculaPedida: ObjectId,
+    fecha_pedido: String,
+    fecha_entrega: String
 });
 UserSchema.pre('save', function (next) { // funcion para encriptar el password, esto funciona cada vez que se ejecute el 'save' en los controladores
     bcrypt.genSalt(10).then(salts => {
