@@ -8,6 +8,7 @@ function pedidoPeliculaAlquiler(req, res) {
 
     let title = new RegExp(req.body.title, 'i')
     const insertId = ObjectId(req.params.id)
+    console.log(insertId)
 
     User.findOne({ _id: insertId }).then((userId, error) => {
 

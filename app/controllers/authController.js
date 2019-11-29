@@ -1,14 +1,16 @@
 const User = require('../models/Users');
 const bcrypt = require('bcrypt');
 const CONFIG = require('../config/config')
-const token = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 function login(req, res) {
     let username = req.body.username;
+    console.log(req.body)
     let password = req.body.password;
 
-    User.findOne({ username }).then(user => {
-        if (!user) return res.status(404).send({ message: 'Usuario o contraseña incorrectos' });
+    User.findOne({ username: username }).then(user => {
+        console.log(user)
+        if (!user) return res.status(404).send({ message: 'Usuario o contraseña incorrectos :D' });
         bcrypt.compare(password, user.password).then(match => {
             if (match) {
                 //acceso
@@ -21,11 +23,15 @@ function login(req, res) {
                     peliculaPedida: user.peliculaPedida,
                     fecha_pedido: user.fecha_pedido,
                     fecha_entrega: user.fecha_entrega,
-                    alquiler_peli: user.alquiler_peli
+                    alquiler_peli: user.alquiler_peli,
+	            
+
                 }
 
-                token.sign(payload, CONFIG.SECRET_KEY_TOKEN, function (error, token) {
+                jwt.sign(payload, CONFIG.SECRET_KEY_TOKEN, function (error, token) {
                     if (error) {
+
+
                         return res.status(500).send({ error });
                     } else {
                         if (payload.role === 'usuario' || payload.role === 'admin') {
@@ -41,8 +47,7 @@ function login(req, res) {
             }
 
         }).catch(error => {
-            console.log(error);
-            res.status(500).send({ error });
+            res.status(501).send({ error });
         });
     }).catch(error => {
         console.log(error);

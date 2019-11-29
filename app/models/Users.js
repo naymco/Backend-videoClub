@@ -3,47 +3,18 @@ const bcrypt = require('bcrypt');
 const ObjectId = require('mongodb').ObjectID;
 
 const UserSchema = new mongoose.Schema({
-    /* id: {
-        type: Number,
-        unique: true
-    } */
-    name: {
-        type: String,
-        required: true
-    },
-    username: {
-        type: String,
-        required: true,
-        unique: true
-    },
+    
+    id: String,
+    name: String,
+    username: String,
     role: {
         type: String,
-        default: 'usuario',
-        enum: [
-            'invitado', // 
-            'usuario', // 
-            'admin' // GET, PUT, POST, DELETE  // puede hacerlo todo 
-        ]
+        default: 'usuario'
     },
-    email: {
-        type: String,
-        unique: true,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
-    sign_up_date: {
-        type: Date,
-        default: Date.now()
-    },
-    last_login_date: {
-        type: Date,
-        default: Date.now()
-    },
+    email: String,
+    password: String,
+    peliculaPedida: String,
     alquiler_peli: String,
-    peliculaPedida: ObjectId,
     fecha_pedido: String,
     fecha_entrega: String
 });

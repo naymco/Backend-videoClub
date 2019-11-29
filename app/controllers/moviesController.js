@@ -2,7 +2,7 @@ const Movies = require('../models/Movies');
 
 
 function index(req, res) { // busqueda de todas las pelúculas
-    Movies.find({})
+    Movies.find({}).limit(20)
         .then(peliculas => {
             if (peliculas.length) return res.status(200).send({ peliculas }); // si hay peliculas retornalas
             return res.status(204).send({ message: 'NO CONTENT' }); // sino retorna que no hay contenido

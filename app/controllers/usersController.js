@@ -16,8 +16,8 @@ function show(req, res) { // con esta función hace una busqueda de todos los us
 }
 
 function create(req, res) {
-    new User(req.body)
-        .save().then(user => res.status(201).send({ user }))
+    new User(req.body).save()
+        .then(user => res.status(201).send({ user }))
         .catch(error => res.status(500).send({ error }));
 }
 
