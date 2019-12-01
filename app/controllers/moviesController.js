@@ -20,16 +20,24 @@ function show(req, res) {
 }
 
 function find(req, res, next) { // Función de búsqueda que usarán parte de las funciones de arriba. es un middleware
-    let query = {};
-    query[req.params.key] = req.params.value;
-    Movies.find(query).then(peliculas => {
-        if (!peliculas.length) return next();
-        req.body.peliculas = peliculas;
-        return next();
-    }).catch(error => {
-        req.body.error = error;
-        next();
+
+    let id = req.params.id;
+    Movies.findById(id, (error, ids) => {
+        if (error) return res.status(404).send({ message: 'No existe esa pelicula', error });
+        if (!ids) return res.status(403).send({ message: 'Ha habido un error' });
+        return res.status(200).send({ ids });
     })
+
+    // let query = {};
+    // query[req.params.key] = req.params.value;
+    // Movies.find(query).then(peliculas => {
+    //     if (!peliculas.length) return next();
+    //     req.body.peliculas = peliculas;
+    //     return next();
+    // }).catch(error => {
+    //     req.body.error = error;
+    //     next();
+    // })
 }
 
 function buscarTitulo(req, res) {
