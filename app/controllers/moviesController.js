@@ -27,17 +27,7 @@ function find(req, res, next) { // Función de búsqueda que usarán parte de la
         if (!ids) return res.status(403).send({ message: 'Ha habido un error' });
         return res.status(200).send({ ids });
     })
-
-    // let query = {};
-    // query[req.params.key] = req.params.value;
-    // Movies.find(query).then(peliculas => {
-    //     if (!peliculas.length) return next();
-    //     req.body.peliculas = peliculas;
-    //     return next();
-    // }).catch(error => {
-    //     req.body.error = error;
-    //     next();
-    // })
+    //return next();
 }
 
 function buscarTitulo(req, res) {

@@ -24,7 +24,7 @@ function login(req, res) {
                     fecha_pedido: user.fecha_pedido,
                     fecha_entrega: user.fecha_entrega,
                     alquiler_peli: user.alquiler_peli,
-	            
+
 
                 }
 
@@ -35,8 +35,10 @@ function login(req, res) {
                         return res.status(500).send({ error });
                     } else {
                         if (payload.role === 'usuario' || payload.role === 'admin') {
-                            return res.status(200).send({ message: `Bienvenido ${payload.name}. Este es tu token: ${token}`, payload })
+                            return res.status(200).send({ message: `Bienvenido ${payload.name}. Este es tu token: ${token},`, payload })
+                            // return res.status(201).send(send => {
 
+                            // })
                         } else res.status(403).send({ message: 'No eres usuario registrado' })
                     }
                 })

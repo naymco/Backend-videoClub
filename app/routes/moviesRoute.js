@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/', movieC.index)
     .get('/:id', movieC.find, movieC.show)
-    .get('/:title', movieC.find, movieC.buscarTitulo)
+    .get('/title/:title', movieC.buscarTitulo)
 
 
 

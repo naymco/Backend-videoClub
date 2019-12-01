@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 
 
 const MovieSchema = new mongoose.Schema({
-    /* id: {
-        type: Number,
+    id: {
+        type: String,
         required: true,
         unique: true,
-    }, */
+    }, 
     title: {
         type: String,
         required: true,
