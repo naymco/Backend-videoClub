@@ -13,7 +13,7 @@ terminar el proyecto a tiempo, también me ayudaron mucho mis compañeros. Me hu
 con MongoDB al no poder relacionar las colecciones se me hizo complicado a parte de no saber mucho sobre mongo, pero realmente 
 con esta parte del proyecto creo que he aprendido mucho más de lo que pensaba. 
 
-No me disgusta el backend la verdad, ahora a ver que tal me va con Angular.
+No me disgusta el backend la verdad. Aquí dejo el link al frontend que creé en Angular 8 https://github.com/naymco/FrontEnd-VideoClub/
 
 
 Catacterísticas requeridas:
